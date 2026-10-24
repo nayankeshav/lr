@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <math.h>
-#define MAX 1000
+#define MAX 2000
 
 typedef struct {
     double x[MAX];
@@ -30,8 +30,11 @@ int main(){
         printf("Error opening file\n");    
     }
 
+    char dump[300];
+    fgets(dump,sizeof(dump),file);
+
     //Reading CSV file to struct 
-    for(int i = 0;fscanf(file, "%lf,%lf",&data.x[i],&data.y[i]) == 2; i++){
+    for(int i = 0;fscanf(file, "%lf %*[,;] %lf",&data.x[i],&data.y[i]) == 2; i++){
         number_of_data++;
     }
 
