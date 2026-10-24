@@ -58,8 +58,18 @@ int main(){
 
     printf("Y = BX + A\n");
     printf("Y = %lfX + %lf\n",b,a);
-    printf("RMS Error : %lf\n",rmse_value);
+    printf("RMS Error : %lf\n\n",rmse_value);
 
-    
+    double checker;
+    while(true){
+        printf("Enter X values [enter -ve value to quit]: ");
+        scanf("%lf",&checker);
+        if(checker < 0){
+            break;
+        }
+        else{
+            printf("Curresponding Y value : %lf\n",((b*checker) + a));
+        }
+    }
 
 }
