@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 #define MAX 1000
 
 typedef struct {
@@ -6,17 +7,25 @@ typedef struct {
     double y[MAX];
 } xy_data;
 
+double rmse(double a, double b, int number_of_data, double x_array[], double y_array[]){
+    double result;
+    double intermidate = 0;
+    for(int j = 0; j < number_of_data; j++){
+        intermidate = intermidate + (y_array[j] - ((b*x_array[j]) + a)) * (y_array[j] - ((b*x_array[j]) + a));
+    }
+    result = sqrt(intermidate/number_of_data);
+    return result;
+}
+
 int main(){
     int number_of_data = 0;
 
     printf("Vale Limit Set At : %d \n",MAX);
 
-    printf("Reading Data\n");
     FILE *file;
     xy_data data; // Declaring a Single Instance
     
     file = fopen("data.csv","r");
-
     if(file == NULL){
         printf("Error opening file\n");    
     }
@@ -41,7 +50,13 @@ int main(){
     double b = ((number_of_data*(xy)) - (x*y))/( (number_of_data * x2) - (x*x));
     double a = (y - (b*x))/number_of_data;
 
+    //Root Mean Squaed Error, actual output and Predicted value
+    double rmse_value = rmse(a,b,number_of_data,data.x,data.y);
+
     printf("Y = BX + A\n");
     printf("Y = %lfX + %lf\n",b,a);
+    printf("RMS Error : %lf\n",rmse_value);
+
+    
 
 }
