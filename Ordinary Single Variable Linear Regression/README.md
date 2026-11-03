@@ -67,9 +67,9 @@ The implementation relies on a pre-allocated fixed array size via a macro defini
 ### Key Functions & Logic
  
 1. **`xy_data` struct**: Holds parallel static arrays `x[MAX]` and `y[MAX]` inside a single structure instance.
-2. **`rmse(...)`**: Iterates through the stored data points to compute the residual error between actual *Y* and predicted *Ŷ = B·X + A*.
+2. **`RMSE`**: Iterates through the stored data points to compute the residual error between actual *Y* and predicted *Ŷ = B·X + A*.
 3. **File parsing (`fgets` & `fscanf`)**: Skips the CSV header line and increments the dataset count (`number_of_data`) while parsing each row.
-4. **Interactive prediction loop**: Keeps running after model fitting, so you can enter any value of *X* and get the predicted *Y* on demand.
+4. **Prediction loop**: Keeps running after model fitting, so you can enter any value of *X* and get the predicted *Y* on demand.
 ## How to Build & Run
  
 ### Prerequisites
